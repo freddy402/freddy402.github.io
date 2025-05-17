@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🚀 Servicios Profesionales - ING Freddy Lobo</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #f5f5f5; color: #333; }
+    nav { position: fixed; top: 0; width: 100%; background: #003366; color: #fff; display: flex; justify-content: space-between; padding: 10px 20px; z-index: 100; }
+    nav a { color: #fff; margin-left: 15px; text-decoration: none; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    header { padding: 100px 20px 40px; text-align: center; background: url('https://via.placeholder.com/1200x300') center/cover no-repeat; color: #003366; }
+    header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+    header p { font-size: 1.1rem; }
+    .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+    h2 { margin-bottom: 20px; color: #003366; }
+    #about { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; }
+    #about img { width: 180px; border-radius: 8px; }
+    #about div { flex: 1; }
+    .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 20px; }
+    .service-item { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .service-item h3 { margin-bottom: 10px; color: #003366; }
+    .service-item p { margin-bottom: 10px; }
+    .service-item .price { font-weight: bold; margin-bottom: 15px; display: block; }
+    .service-item a { display: inline-block; background: #28a745; color: #fff; padding: 10px 20px; border-radius: 4px; text-decoration: none; }
+    .service-item a:hover { background: #218838; }
+    #portfolio .card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    #portfolio img { width: 100%; display: block; }
+    #portfolio .content { padding: 15px; }
+    #testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 20px; }
+    .testimonial { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); position: relative; }
+    .testimonial::before { content: "“"; font-size: 3rem; position: absolute; top: -10px; left: 10px; color: #003366; }
+    #faq details { margin-bottom: 10px; background: #fff; padding: 15px; border-radius: 6px; }
+    #faq summary { font-weight: bold; cursor: pointer; }
+    .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: #fff; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 100; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div><strong>ING Freddy Lobo</strong></div>
+    <div>
+      <a href="#about">Sobre mí</a>
+      <a href="#services">Servicios</a>
+      <a href="#portfolio">Proyectos</a>
+      <a href="#testimonials">Testimonios</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contacto</a>
+    </div>
+  </nav>
+  <header>
+    <h1>🚀 Servicios Profesionales</h1>
+    <p>Soluciones digitales, automatización y SEO para hacer crecer tu negocio</p>
+  </header>
+  <section id="about" class="container">
+    <img src="img" alt="Freddy Lobo"/>
+    <div>
+      <h2>Sobre mí</h2>
+      <p>Soy el <strong>Ing. Freddy Lobo</strong>, con más de 6 años ayudando a PYMEs a optimizar procesos y aumentar sus ingresos. Experto en desarrollo web, SEO avanzado y automatización de datos.</p>
+      <a href="#contact" style="display:inline-block;margin-top:15px;padding:10px 20px;background:#28a745;color:#fff;border-radius:4px;text-decoration:none;">Solicita tu diagnóstico gratis</a>
+    </div>
+  </section>
+  <section id="services" class="container services">
+    <h2>💻 Servicios y Precios</h2>
+
+    <div class="service-item">
+      <h3>Optimización SEO para Negocios</h3>
+      <span class="price">$200.000 COP</span>
+      <p>Sube tu visibilidad en Google con estrategias probadas.</p>
+      <a href="https://wa.link/w05a11" target="_blank">¡Lo quiero!</a>
+    </div>
+    <div class="service-item">
+      <h3>Desarrollo y Rediseño de Páginas Web</h3>
+      <span class="price">$400.000 COP</span>
+      <p>Páginas modernas, responsivas y optimizadas para convertir.</p>
+      <a href="https://wa.link/w05a11" target="_blank">¡Lo quiero!</a>
+    </div>
+    <div class="service-item">
+      <h3>Automatización de Reportes en Excel y Google Sheets</h3>
+      <span class="price">$250.000 COP</span>
+      <p>Reportes automáticos que ahorran tiempo y evitan errores.</p>
+      <a href="https://wa.link/w05a11" target="_blank">¡Lo quiero!</a>
+    </div>
+    <div class="service-item">
+      <h3>Soporte Técnico y Mantenimiento de PC</h3>
+      <span class="price">$150.000 COP</span>
+      <p>Mantén tus equipos funcionando sin contratiempos.</p>
+      <a href="https://wa.link/w05a11" target="_blank">¡Lo quiero!</a>
+    </div>
+    <div class="service-item">
+      <h3>Administración de Redes Sociales</h3>
+      <span class="price">$300.000 COP</span>
+      <p>Gestión y creación de contenido que conecta con tu audiencia.</p>
+      <a href="https://wa.link/w05a11" target="_blank">¡Lo quiero!</a>
+    </div>
+    <div class="service-item">
+      <h3>Dashboards Personalizados en Power BI</h3>
+      <span class="price">$350.000 COP</span>
+      <p>Paneles interactivos para decisiones basadas en datos.</p>
+      <a href="https://wa.link/w05a11" target="_blank">¡Lo quiero!</a>
+    </div>
+    <div class="service-item">
+      <h3>Plantillas de Excel Avanzadas</h3>
+      <span class="price">$180.000 COP</span>
+      <p>Soluciones a medida para tus necesidades financieras y operativas.</p>
+      <a href="https://wa.link/w05a11" target="_blank">¡Lo quiero!</a>
+    </div>
+    <div class="service-item">
+      <h3>Google Tag Manager y Analytics</h3>
+      <span class="price">$220.000 COP</span>
+      <p>Implementación y configuración para medir tu rendimiento digital.</p>
+      <a href="https://wa.link/w05a11" target="_blank">¡Lo quiero!</a>
+    </div>
+    <div class="service-item">
+      <h3>Creación de Formularios y Automatización</h3>
+      <span class="price">$200.000 COP</span>
+      <p>Formularios inteligentes que integran flujos automáticos.</p>
+      <a href="https://wa.link/w05a11" target="_blank">¡Lo quiero!</a>
+    </div>
+    <div class="service-item">
+      <h3>Capacitación en Excel Avanzado y SEO</h3>
+      <span class="price">$300.000 COP</span>
+      <p>Entrenamientos prácticos para potenciar tus habilidades.</p>
+      <a href="https://wa.link/w05a11" target="_blank">¡Lo quiero!</a>
+    </div>
+    <div class="service-item">
+      <h3>Presentaciones Profesionales en PowerPoint</h3>
+      <span class="price">$180.000 COP</span>
+      <p>Diapositivas limpias, impactantes y alineadas a tu marca.</p>
+      <a href="https://wa.link/w05a11" target="_blank">¡Lo quiero!</a>
+    </div>
+  </section>
+
+  <section id="portfolio" class="container" class="container">
+    <h2>📂 Proyecto Destacado</h2>
+    <div class="card">
+      <img src="https://www.facebook.com/photo?fbid=2234653596936624&set=a.101267833608555" alt="Proyecto Freddy"/>
+      <div class="content">
+        <h3>E-Commerce SaludCol</h3>
+        <p>Desarrollo de tienda online para productos naturales, integración de pagos y SEO on-page. +50% en ventas mes a mes.</p>
+      </div>
+    </div>
+  </section>
+  <section id="testimonials" class="container">
+    <h2>🗣 Testimonios de Clientes</h2>
+    <div class="testimonial">
+      <p>“Contratar al Ing. Freddy fue la mejor decisión: nuestro tráfico orgánico creció un 80% en 4 meses.”</p>
+      <p><strong>— Laura Gómez, Marketing Manager de SaludCol</strong></p>
+    </div>
+    <div class="testimonial">
+      <p>“La automatización de reportes nos liberó tiempo para enfocarnos en estrategias de crecimiento. Excelente trabajo.”</p>
+      <p><strong>— Andrés Martínez, CFO de FinanciApp</strong></p>
+    </div>
+    <div class="testimonial">
+      <p>“El rediseño de nuestra web aumentó la conversión en un 35%. Muy profesional y cumplió plazos.”</p>
+      <p><strong>— Carolina Díaz, CEO de EcoTienda</strong></p>
+    </div>
+    <div class="testimonial">
+      <p>“La consultoría de SEO de Freddy nos permitió entrar en el top 3 de palabras clave clave de nuestra industria.”</p>
+      <p><strong>— Miguel Torres, Director de Marketing en AutoParts</strong></p>
+    </div>
+    <div class="testimonial">
+      <p>“Su capacitación en Excel transformó nuestro equipo: ahora realizamos análisis en minutos.”</p>
+      <p><strong>— Sonia Ramírez, Gerente de Finanzas en AgroFresh</strong></p>
+    </div>
+  </section>
+  <section id="faq" class="container">
+    <h2>❓ Preguntas Frecuentes</h2>
+    <details>
+      <summary>¿Cuánto tarda un proyecto web completo?</summary>
+      <p>Normalmente entre 4 y 6 semanas, dependiendo de la complejidad y el alcance.</p>
+    </details>
+    <details>
+      <summary>¿Cómo se realiza el proceso de automatización de reportes?</summary>
+      <p>Analizamos tus fuentes de datos y creamos scripts o macros que extraen y formatean la información automáticamente.</p>
+    </details>
+    <details>
+      <summary>¿Qué incluye la optimización SEO?</summary>
+      <p>Análisis de palabras clave, optimización on-page, velocidad de carga y configuración de Google Analytics y Search Console.</p>
+    </details>
+    <details>
+      <summary>¿Ofrecen capacitación presencial o virtual?</summary>
+      <p>Ambas modalidades: virtual a través de videollamadas o presencial en Barranquilla.</p>
+    </details>
+    <details>
+      <summary>¿Cómo contrato un servicio?</summary>
+      <p>Puedes hacer clic en “¡Lo quiero!” junto al servicio y comunicarte por WhatsApp.</p>
+    </details>
+    <details>
+      <summary>¿Qué garantía ofrecen?</summary>
+      <p>Garantía de satisfacción: ajustes gratuitos durante 15 días después de la entrega.</p>
+    </details>
+    <details>
+      <summary>¿Puedo escalar o cambiar mi plan después?</summary>
+      <p>Sí, puedes agregar nuevos servicios o actualizar precios en cualquier momento.</p>
+    </details>
+    <details>
+      <summary>¿Cómo se realiza el pago?</summary>
+      <p>Transferencia bancaria, Nequi, Daviplata o efectivo en Barranquilla.</p>
+    </details>
+    <details>
+      <summary>¿Cuántos usuarios pueden recibir capacitación simultánea?</summary>
+      <p>Hasta 10 participantes por sesión para garantizar atención personalizada.</p>
+    </details>
+    <details>
+      <summary>¿Tienen paquetes especiales para empresas?</summary>
+      <p>Sí, podemos crear cotizaciones a medida según tus necesidades y volumen de servicios.</p>
+    </details>
+  </section>
+  <section id="contact" class="container">
+    <h2>📩 Contáctame</h2>
+    <p>📞 <a href="tel:+573007705341">300 7705341</a> | ✉ <a href="mailto:Freddylobo7a@gmail.com">Freddylobo7a@gmail.com</a></p>
+    <p>📍 Barranquilla - Disponible</p>
+    <div style="margin-top:20px;">
+      <h3>Sígueme en redes sociales</h3>
+      <p>
+        <a href="https://www.facebook.com/freddyhugo.loboguerrero/posts/pfbid0rjas1HhodQrh5p3GHuHBgb8uy8fGhT3VjqKwW2LCxZu7f4KY7v7BqdRYwwmYesLTl" target="_blank" style="margin-right:15px; text-decoration:none; color:#003366; font-weight:bold;">Facebook</a>
+        <a href="https://www.instagram.com/freddylobo7a2018/" target="_blank" style="text-decoration:none; color:#C13584; font-weight:bold;">Instagram</a>
+      </p>
+    </div>
+  </section>
+  <a href="https://wa.link/w05a11" class="whatsapp-float" target="_blank" title="Escríbeme por WhatsApp">💬</a>
+</body>
+</html>
