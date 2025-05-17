@@ -5,101 +5,241 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>🚀 Servicios Profesionales - ING Freddy Lobo</title>
   <style>
+    /* Reset básico */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       font-family: Arial, sans-serif;
       line-height: 1.6;
-      margin: 0;
-      padding: 0;
       background: #f5f5f5;
       color: #333;
     }
+
+    /* Navegación fija */
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%;
+      background: #003366; color: #fff;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 20px; z-index: 1000;
+    }
+    nav a { color: #fff; margin-left: 15px; text-decoration: none; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+
     header {
-      background: #003366;
-      color: #fff;
-      padding: 20px;
+      padding: 100px 20px 40px; /* espacio para el nav */
       text-align: center;
+      background: url('https://via.placeholder.com/1200x300') center/cover no-repeat;
+      color: #fff;
     }
-    header h1 {
-      margin: 0;
-      font-size: 1.8rem;
-    }
-    header p {
-      margin: 5px 0;
-    }
-    .container {
-      max-width: 800px;
-      margin: 20px auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    .contact {
-      margin-bottom: 20px;
-    }
-    .contact p {
-      margin: 5px 0;
-    }
-    .services ul {
-      list-style: none;
-      padding: 0;
-    }
+    header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+    header p { font-size: 1.1rem; }
+
+    .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+
+    h2 { margin-bottom: 20px; color: #003366; }
+
+    /* Sección “Sobre mí” */
+    #about { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+    #about img { width: 200px; border-radius: 8px; }
+    #about div { flex: 1; }
+
+    /* Servicios */
+    .services ul { list-style: none; padding: 0; }
     .services li {
-      margin: 10px 0;
-      padding-left: 24px;
-      position: relative;
+      position: relative; padding-left: 24px; margin: 10px 0;
     }
     .services li::before {
-      content: "✔";
-      position: absolute;
-      left: 0;
-      color: #28a745;
+      content: "✔"; position: absolute; left: 0; color: #28a745;
     }
-    .cta {
-      background: #28a745;
-      color: #fff;
-      text-align: center;
-      padding: 15px;
-      margin-top: 20px;
-      border-radius: 4px;
-      text-decoration: none;
-      display: inline-block;
+
+    /* Portafolio */
+    #portfolio { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 20px; }
+    .card {
+      background: #fff; border-radius: 8px; overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    .cta:hover {
-      background: #218838;
+    .card img { width: 100%; display: block; }
+    .card .content { padding: 15px; }
+
+    /* Testimonios */
+    #testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 20px; }
+    .testimonial {
+      background: #fff; padding: 20px; border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      position: relative;
+    }
+    .testimonial::before {
+      content: "“"; font-size: 3rem; position: absolute; top: -10px; left: 10px; color: #003366;
+    }
+
+    /* Planes */
+    .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 20px; }
+    .plan {
+      background: #fff; padding: 20px; border-radius: 8px;
+      border: 2px solid #003366; text-align: center;
+    }
+    .plan h3 { margin-bottom: 10px; }
+    .plan .price { font-size: 1.8rem; color: #28a745; margin: 10px 0; }
+    .plan ul { list-style: none; padding: 0; margin-bottom: 15px; }
+    .plan ul li { margin: 8px 0; }
+    .plan a {
+      display: inline-block; background: #28a745; color: #fff;
+      padding: 10px 20px; border-radius: 4px; text-decoration: none;
+    }
+    .plan a:hover { background: #218838; }
+
+    /* FAQ */
+    #faq details { margin-bottom: 10px; background: #fff; padding: 15px; border-radius: 6px; }
+    #faq summary { font-weight: bold; cursor: pointer; }
+
+    /* Llamada a WhatsApp fija */
+    .whatsapp-float {
+      position: fixed; bottom: 20px; right: 20px;
+      background: #25D366; color: #fff; border-radius: 50%;
+      width: 60px; height: 60px; display: flex;
+      align-items: center; justify-content: center;
+      text-decoration: none; font-size: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      z-index: 1000;
     }
   </style>
 </head>
 <body>
+
+  <nav>
+    <div><strong>ING Freddy Lobo</strong></div>
+    <div>
+      <a href="#about">Sobre mí</a>
+      <a href="#services">Servicios</a>
+      <a href="#portfolio">Portafolio</a>
+      <a href="#testimonials">Testimonios</a>
+      <a href="#plans">Planes</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contacto</a>
+    </div>
+  </nav>
+
   <header>
-    <h1>🚀 Servicios Profesionales<br>ING Freddy Lobo</h1>
-    <p>📍 Barranquilla - Disponible</p>
+    <h1>🚀 Servicios Profesionales</h1>
+    <p>Soluciones digitales, automatización y SEO para hacer crecer tu negocio</p>
   </header>
 
-  <div class="container">
-    <section class="contact">
-      <p>📞 <a href="tel:+573007705341">300 7705341</a> | ✉ <a href="mailto:Freddylobo7a@gmail.com">Freddylobo7a@gmail.com</a></p>
-    </section>
+  <section id="about" class="container">
+    <img src="https://via.placeholder.com/200" alt="Foto Freddy Lobo">
+    <div>
+      <h2>Sobre mí</h2>
+      <p>Soy el <strong>Ing. Freddy Lobo</strong>, especialista en desarrollo web, SEO y automatización de procesos. Con más de 5 años de experiencia ayudando a PYMEs en Barranquilla a optimizar sus flujos de trabajo y aumentar sus ventas.</p>
+    </div>
+  </section>
 
-    <section class="services">
-      <h2>💻 Soluciones Digitales y Automatización</h2>
+  <section id="services" class="container services">
+    <h2>💻 Servicios</h2>
+    <ul>
+      <li>Optimización SEO para Negocios</li>
+      <li>Creación y Optimización de Páginas Web</li>
+      <li>Automatización de Reportes en Excel y Google Sheets</li>
+      <li>Soporte Técnico y Mantenimiento de PC</li>
+      <li>Administración de Redes Sociales</li>
+      <li>Creación de Dashboards en Power BI</li>
+      <li>Plantillas de Excel Personalizadas</li>
+      <li>Google Tag Manager y Analytics</li>
+      <li>Creación de Formularios y Automatización</li>
+      <li>Capacitación en Excel Avanzado y SEO</li>
+      <li>Diseño de Presentaciones en PowerPoint</li>
+    </ul>
+  </section>
+
+  <section id="portfolio" class="container">
+    <h2>🖼 Portafolio</h2>
+    <div class="card">
+      <img src="https://via.placeholder.com/400x200" alt="Proyecto 1">
+      <div class="content">
+        <h3>Proyecto XYZ</h3>
+        <p>Desarrollo de sitio web corporativo con SEO integrado.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/400x200" alt="Proyecto 2">
+      <div class="content">
+        <h3>Dashboard Power BI</h3>
+        <p>Panel interactivo para análisis de ventas.</p>
+      </div>
+    </div>
+    <!-- Añade más tarjetas según tu portafolio -->
+  </section>
+
+  <section id="testimonials" class="container">
+    <h2>🗣 Testimonios</h2>
+    <div class="testimonial">
+      <p>Gracias a Freddy nuestro sitio web subió un 30% su tráfico en 2 meses. ¡Muy recomendado!</p>
+      <p><strong>— María Pérez, CEO de Tienda ABC</strong></p>
+    </div>
+    <div class="testimonial">
+      <p>La automatización de reportes nos ahorró horas de trabajo semanal. Excelente servicio.</p>
+      <p><strong>— Juan Rodríguez, Gerente de Operaciones</strong></p>
+    </div>
+  </section>
+
+  <section id="plans" class="container">
+    <h2>💼 Planes</h2>
+    <div class="plan">
+      <h3>Básico</h3>
+      <p class="price">$300.000 COP</p>
       <ul>
-        <li>Optimización SEO para Negocios</li>
-        <li>Creación y Optimización de Páginas Web</li>
-        <li>Automatización de Reportes en Excel y Google Sheets</li>
-        <li>Soporte Técnico y Mantenimiento de PC</li>
-        <li>Administración de Redes Sociales</li>
-        <li>Creación de Dashboards en Power BI</li>
-        <li>Creación de plantillas de Excel personalizadas</li>
-        <li>Google Tag Manager y Analytics</li>
-        <li>Creación de Formularios y Automatización</li>
-        <li>Capacitación en Excel Avanzado y SEO</li>
-        <li>Diseño de Presentaciones Profesionales en PowerPoint</li>
+        <li>SEO inicial</li>
+        <li>Informe mensual</li>
+        <li>Soporte básico</li>
       </ul>
-    </section>
+      <a href="https://wa.link/w05a11" target="_blank">¡Lo quiero!</a>
+    </div>
+    <div class="plan">
+      <h3>Profesional</h3>
+      <p class="price">$600.000 COP</p>
+      <ul>
+        <li>SEO + Automatización</li>
+        <li>Reportes semanales</li>
+        <li>Soporte prioritario</li>
+      </ul>
+      <a href="https://wa.link/w05a11" target="_blank">¡Lo quiero!</a>
+    </div>
+    <div class="plan">
+      <h3>Premium</h3>
+      <p class="price">$1.200.000 COP</p>
+      <ul>
+        <li>Todo lo anterior</li>
+        <li>Desarrollo web completo</li>
+        <li>Consultoría ilimitada</li>
+      </ul>
+      <a href="https://wa.link/w05a11" target="_blank">¡Lo quiero!</a>
+    </div>
+  </section>
 
-    <a href="mailto:Freddylobo7a@gmail.com" class="cta">🎯 Contáctame y recibe una asesoría personalizada</a>
-  </div>
+  <section id="faq" class="container">
+    <h2>❓ Preguntas Frecuentes</h2>
+    <details>
+      <summary>¿Cuánto dura un proyecto de SEO?</summary>
+      <p>Normalmente entre 3 y 6 meses para ver resultados sostenibles.</p>
+    </details>
+    <details>
+      <summary>¿Ofreces planes mensuales?</summary>
+      <p>Sí, puedes suscribirte a reportes y soporte mensual.</p>
+    </details>
+    <details>
+      <summary>¿Cómo puedo pagar?</summary>
+      <p>Transferencia bancaria, Nequi, Daviplata o efectivo en Barranquilla.</p>
+    </details>
+  </section>
+
+  <section id="contact" class="container">
+    <h2>📩 Contáctame</h2>
+    <p>📞 <a href="tel:+573007705341">300 7705341</a> | ✉ <a href="mailto:Freddylobo7a@gmail.com">Freddylobo7a@gmail.com</a></p>
+    <p>📍 Barranquilla - Disponible</p>
+  </section>
+
+  <!-- Botón flotante de WhatsApp -->
+  <a href="https://wa.link/w05a11" class="whatsapp-float" target="_blank" title="Escríbeme por WhatsApp">
+    💬
+  </a>
+
 </body>
 </html>
 
