@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contacto</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-purple-100 via-white to-blue-100 min-h-screen flex items-center justify-center p-4">
+  <div class="w-full max-w-2xl bg-white shadow-xl rounded-2xl p-8">
+    <h1 class="text-3xl font-bold text-center text-purple-700 mb-6">¡Contáctanos!</h1>
+    <form id="formContacto" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Nombre</label>
+        <input type="text" name="nombre" required class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-purple-500 focus:border-purple-500"/>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Correo electrónico</label>
+        <input type="email" name="email" required class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-purple-500 focus:border-purple-500"/>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Mensaje</label>
+        <textarea name="mensaje" required rows="4" class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-purple-500 focus:border-purple-500"></textarea>
+      </div>
+      <div class="flex justify-between items-center mt-6">
+        <button type="submit" class="bg-purple-600 text-white px-6 py-2 rounded-xl hover:bg-purple-700 transition">Enviar</button>
+        <a href="https://wa.me/573007705341" target="_blank" class="text-green-600 underline hover:text-green-800">Escríbenos por WhatsApp</a>
+      </div>
+    </form>
+    <p id="mensajeExito" class="hidden mt-4 text-green-600 font-semibold text-center">¡Mensaje enviado con éxito!</p>
+  </div>
+
+  <!-- SCRIPT para enviar a tu correo con FormSubmit -->
+  <script>
+    const form = document.getElementById("formContacto");
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      fetch("https://formsubmit.co/freddylobo7a@gmail.com", {
+        method: "POST",
+        body: formData
+      }).then(response => {
+        if (response.ok) {
+          document.getElementById("mensajeExito").classList.remove("hidden");
+          form.reset();
+        } else {
+          alert("Hubo un error al enviar el formulario.");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
