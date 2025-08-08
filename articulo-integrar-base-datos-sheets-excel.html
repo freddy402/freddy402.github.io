@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía paso a paso: integra tu base de datos con Google Sheets y Excel para reportes automáticos</title>
+<meta name="description" content="Aprende a conectar tu base de datos a Google Sheets y Excel para generar reportes automáticos. Guía paso a paso con buenas prácticas, seguridad y programación de actualizaciones.">
+<link rel="canonical" href="https://freddy402.github.io/sevicio_de_automatizacion/articulo-integrar-base-datos-sheets-excel.html">
+<meta name="robots" content="index, follow">
+<style>
+:root{
+  --accent:#27ae60;
+  --accent-700:#1f844b;
+  --primary:#0B2E4E;
+  --bg:#f5f8fa;
+  --surface:#ffffff;
+  --text:#1F2A37;
+  --muted:#475569;
+}
+*{box-sizing:border-box}
+body{font-family:Arial, Helvetica, sans-serif; margin:0; background:var(--bg); color:var(--text); line-height:1.75}
+header{background:var(--surface); text-align:center; padding:52px 20px; border-bottom:4px solid var(--accent)}
+h1{margin:0; font-size:2.2rem; color:var(--primary)}
+main{max-width:1024px; margin:40px auto; background:var(--surface); padding:0 20px 26px; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,.06)}
+h2{color:var(--primary); border-bottom:3px solid var(--accent); padding-bottom:6px; margin-top:28px}
+h3{color:var(--primary); margin-top:18px}
+a{color:var(--accent); text-decoration:none}
+a:hover{color:var(--accent-700); text-decoration:underline}
+.toc{background:#eef7f1; border:1px solid #d7ecdd; border-radius:10px; padding:14px 16px; margin:18px 0}
+.toc a{display:block; padding:4px 0}
+blockquote{border-left:4px solid var(--accent); background:#f3fbf6; padding:12px 16px; border-radius:6px; color:var(--muted)}
+ul,ol{padding-left:22px}
+.keywords{background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:14px 16px; margin:20px 0}
+.badge{display:inline-block; background:#eaf7ef; border:1px solid #cfeedb; color:#1e6b3e; border-radius:999px; padding:5px 10px; font-size:.85rem; margin:4px 6px 0 0}
+.note{font-size:.95rem; color:var(--muted)}
+footer{text-align:center; padding:26px; color:#64748b}
+code{background:#f3f4f6; padding:2px 6px; border-radius:4px}
+pre{background:#0B2E4E10; padding:12px; border-radius:8px; overflow:auto}
+</style>
+</head>
+<body>
+<header>
+  <h1>Guía paso a paso: integra tu base de datos con Google Sheets y Excel para reportes automáticos</h1>
+  <p class="note">Una guía práctica para equipos que desean llevar sus números desde SQL y APIs a hojas de cálculo con actualizaciones programadas.</p>
+</header>
+
+<main>
+  <p>Si tu información vive en sistemas distintos (ERP, CRM, ecommerce, contabilidad) y cada semana alguien la copia a mano a una hoja, esta guía es para ti. Conectar una <strong>base de datos</strong> a <strong>Google Sheets</strong> y <strong>Excel</strong> permite crear reportes que se refrescan solos, con menos errores y mayor trazabilidad. A lo largo de este paso a paso verás opciones, buenas prácticas y consideraciones de seguridad. Si en algún punto prefieres una implementación acompañada, puedes revisar nuestro <a href="https://freddy402.github.io/sevicio_de_automatizacion" target="_blank" rel="noopener">servicio profesional de automatización de reportes</a> para acelerar sin romper nada.</p>
+
+  <div class="toc" aria-label="Tabla de contenidos">
+    <strong>Tabla de contenidos</strong>
+    <a href="#pre">1. Requisitos previos y decisiones clave</a>
+    <a href="#enfoques">2. Enfoques de conexión: conectores, Apps Script, Power Query</a>
+    <a href="#sheets">3. Google Sheets: conexión vía Apps Script (SQL/API)</a>
+    <a href="#excel">4. Excel: conexión con Power Query a SQL</a>
+    <a href="#transformacion">5. Transformación y limpieza (ETL ligero)</a>
+    <a href="#programacion">6. Programación de actualizaciones y notificaciones</a>
+    <a href="#seguridad">7. Seguridad, permisos y gobierno de datos</a>
+    <a href="#pruebas">8. Pruebas, monitoreo y resolución de fallos</a>
+    <a href="#kpis">9. KPIs para medir el impacto</a>
+    <a href="#siguientes">10. Siguientes pasos y escalabilidad</a>
+    <a href="#palabras-clave">Palabras clave relacionadas</a>
+  </div>
+
+  <h2 id="pre">1) Requisitos previos y decisiones clave</h2>
+  <p>Antes de tocar herramientas, aclara tres puntos:</p>
+  <ol>
+    <li><strong>Objetivo del reporte:</strong> qué pregunta de negocio debe responder (ventas por canal, rotación de inventario, horas facturables).</li>
+    <li><strong>Fuentes y accesos:</strong> base SQL (MySQL, SQL Server, PostgreSQL), API REST, archivos CSV; quién otorga credenciales y qué permisos.</li>
+    <li><strong>Frecuencia de actualización:</strong> diaria, cada hora, bajo demanda. Define también ventanas de mantenimiento.</li>
+  </ol>
+  <p>Estas decisiones te ayudan a escoger el enfoque técnico adecuado y a evitar sobrecargar la base de origen.</p>
+
+  <h2 id="enfoques">2) Enfoques de conexión: conectores, Apps Script, Power Query</h2>
+  <p>Existen varias rutas para llevar datos a tus hojas:</p>
+  <ul>
+    <li><strong>Conectores nativos o de terceros:</strong> simples y rápidos; ideales si ya existe un conector para tu sistema.</li>
+    <li><strong>Google Apps Script (Sheets):</strong> control total con JavaScript para traer datos de <em>APIs</em> o <em>JDBC</em> (según el driver disponible).</li>
+    <li><strong>Power Query (Excel):</strong> potente para conectarte a SQL, transformar y cargar con pasos reproducibles.</li>
+  </ul>
+  <p>Si buscas una forma flexible y documentable, <a href="https://freddy402.github.io/sevicio_de_automatizacion" target="_blank" rel="noopener">automatizar tus informes en Excel y Google Sheets</a> con un flujo ETL ligero suele ser suficiente para la mayoría de pymes.</p>
+
+  <h2 id="sheets">3) Google Sheets: conexión vía Apps Script (SQL/API)</h2>
+  <p>Sheets brilla cuando necesitas un front-end colaborativo con actualizaciones programadas. La idea general es:</p>
+  <ol>
+    <li>Crear un <em>proyecto de Apps Script</em> vinculado a tu hoja.</li>
+    <li>Escribir una función que obtenga datos (por ejemplo, <code>UrlFetchApp.fetch</code> para una API o <code>Jdbc.getConnection</code> si usas un driver JDBC disponible).</li>
+    <li>Parsear la respuesta y escribirla en un rango.</li>
+    <li>Programar un <em>trigger</em> por tiempo (cada hora o a una hora fija).</li>
+  </ol>
+  <h3>Ejemplo conceptual (API REST → Sheets)</h3>
+  <pre><code>// Código conceptual (Apps Script)
+function actualizarDesdeAPI() {
+  var url = 'https://api.tusistema.com/ventas?fecha=today';
+  var resp = UrlFetchApp.fetch(url, { 'headers': { 'Authorization': 'Bearer &lt;TOKEN&gt;' } });
+  var data = JSON.parse(resp.getContentText());
+  var sheet = SpreadsheetApp.getActive().getSheetByName('Ventas');
+  sheet.clearContents(); // opcional: controlar con cuidado
+  var headers = Object.keys(data[0]);
+  sheet.getRange(1,1,1,headers.length).setValues([headers]);
+  var rows = data.map(obj =&gt; headers.map(h =&gt; obj[h]));
+  sheet.getRange(2,1,rows.length, headers.length).setValues(rows);
+}</code></pre>
+  <p>El objetivo aquí no es pegar código listo para producción, sino ilustrar el patrón. En producción, añade validaciones, logs y manejo de errores.</p>
+
+  <h2 id="excel">4) Excel: conexión con Power Query a SQL</h2>
+  <p>Power Query es excelente para construir pasos reproducibles:</p>
+  <ol>
+    <li><strong>Datos &gt; Obtener datos:</strong> elige el origen (SQL Server, MySQL, PostgreSQL, etc.).</li>
+    <li>Ingresa credenciales y <em>consulta</em> (usa parámetros para fechas o filtros).</li>
+    <li>En el editor de Power Query, aplica transformaciones: tipos, filtros, columnas calculadas.</li>
+    <li><strong>Cargar:</strong> a tabla, Pivot o al <em>modelo de datos</em> si necesitas DAX.</li>
+    <li><strong>Actualizar:</strong> manual, al abrir o programado con Power Automate/Task Scheduler (según escenario).</li>
+  </ol>
+  <p>Ventaja clave: cada transformación queda como un “paso” que puedes revisar, documentar y reutilizar.</p>
+
+  <h2 id="transformacion">5) Transformación y limpieza (ETL ligero)</h2>
+  <p>Sea en Apps Script o Power Query, aplica un patrón de limpieza:</p>
+  <ul>
+    <li><strong>Validaciones:</strong> tipos, rangos, valores nulos, duplicados.</li>
+    <li><strong>Reglas de negocio:</strong> mapea catálogos, nombres de canales, impuestos.</li>
+    <li><strong>Normalización:</strong> fechas, monedas, mayúsculas/minúsculas.</li>
+    <li><strong>Enriquecimiento:</strong> calcula KPIs (margen, rotación, conversión) para no recalcular en cada hoja.</li>
+  </ul>
+  <blockquote>Mientras más robusta sea tu “T” de ETL, menos fórmula volátil necesitarás en la hoja y más rápido cargará.</blockquote>
+
+  <h2 id="programacion">6) Programación de actualizaciones y notificaciones</h2>
+  <p>Programa la actualización según la necesidad del negocio. En Sheets, usa <em>time-driven triggers</em>. En Excel, combina la configuración de actualización con <em>Power Automate</em> o el programador de tareas del sistema. Además, agrega <strong>alertas</strong> cuando haya valores fuera de rango: un correo o WhatsApp puede marcar la diferencia entre reaccionar a tiempo o tarde.</p>
+
+  <h2 id="seguridad">7) Seguridad, permisos y gobierno de datos</h2>
+  <p>Conectar sistemas implica responsabilidad. Aplica estas prácticas mínimas:</p>
+  <ul>
+    <li><strong>Credenciales seguras:</strong> evita pegarlas en claro dentro del script; usa variables protegidas o cuentas de servicio.</li>
+    <li><strong>Principio de menor privilegio:</strong> accede solo a lo estrictamente necesario.</li>
+    <li><strong>Control de accesos en la hoja:</strong> define quién edita y quién solo consulta.</li>
+    <li><strong>Trazabilidad:</strong> registra quién actualizó qué y cuándo.</li>
+    <li><strong>Backups y versiones:</strong> protege ante cambios de esquema o errores humanos.</li>
+  </ul>
+  <p>Si necesitas que alguien lo implemente con buenas prácticas y documentación, puedes explorar cómo <a href="https://freddy402.github.io/sevicio_de_automatizacion" target="_blank" rel="noopener">automatizamos informes para equipos</a> que requieren fiabilidad y soporte.</p>
+
+  <h2 id="pruebas">8) Pruebas, monitoreo y resolución de fallos</h2>
+  <p>No esperes a producción para descubrir errores. Prueba con datos extremos, sin datos, con cortes de red y con credenciales inválidas. Registra errores y eventos clave (inicio, fin, totales) para detectar <em>anomalías</em>. Establece un procedimiento de recuperación: reintentos, saltar lote, notificar al responsable.</p>
+  <h3>Lista de chequeo mínima</h3>
+  <ul>
+    <li>Prueba de integridad (totales base vs. totales hoja).</li>
+    <li>Prueba de performance con mayor volumen.</li>
+    <li>Prueba de permisos y visibilidad por rol.</li>
+  </ul>
+
+  <h2 id="kpis">9) KPIs para medir el impacto</h2>
+  <ul>
+    <li><strong>Lead time del reporte:</strong> tiempo entre cierre y disponibilidad del informe.</li>
+    <li><strong>Tasa de errores:</strong> registros inválidos por periodo.</li>
+    <li><strong>Uso/adopción:</strong> usuarios activos que consultan la hoja.</li>
+    <li><strong>Decisiones aceleradas:</strong> eventos donde el dato actualizado permitió actuar antes.</li>
+    <li><strong>ROI:</strong> (horas ahorradas × costo hora × frecuencia) – inversión.</li>
+  </ul>
+
+  <h2 id="siguientes">10) Siguientes pasos y escalabilidad</h2>
+  <p>Una vez probado el primer flujo, replica el patrón a otros reportes. Si el volumen crece, evalúa mover parte del procesamiento a una base intermedia (por ejemplo, SQL o BigQuery) y dejar Sheets/Excel como capa de presentación. El objetivo es mantener la simplicidad del usuario final, con un backend capaz de escalar.</p>
+  <p>Cuando quieras acelerar este camino sin interrumpir la operación, en nuestra <a href="https://freddy402.github.io/sevicio_de_automatizacion" target="_blank" rel="noopener">implementación profesional</a> trabajamos con documentación, capacitación y monitoreo básico para que el sistema sea sostenible.</p>
+
+  <h2 id="palabras-clave">Palabras clave relacionadas</h2>
+  <div class="keywords">
+    <span class="badge">integrar base de datos con Google Sheets</span>
+    <span class="badge">conexión SQL a Excel</span>
+    <span class="badge">Apps Script para APIs</span>
+    <span class="badge">Power Query transformación</span>
+    <span class="badge">programar actualización de reportes</span>
+    <span class="badge">gobernanza de datos en hojas</span>
+    <span class="badge">KPIs de automatización</span>
+    <span class="badge">ETL ligero para reportes</span>
+  </div>
+</main>
+
+<footer>&copy; 2025 Tu Empresa. Todos los derechos reservados.</footer>
+
+<!-- JSON-LD Article with matching keywords -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Guía paso a paso: integra tu base de datos con Google Sheets y Excel para reportes automáticos",
+  "description": "Guía práctica para conectar bases SQL y APIs a Google Sheets y Excel con actualizaciones programadas, buenas prácticas de seguridad y KPIs para medir el impacto.",
+  "inLanguage": "es-CO",
+  "author": { "@type": "Organization", "name": "Tu Empresa" },
+  "publisher": { "@type": "Organization", "name": "Tu Empresa" },
+  "mainEntityOfPage": "https://freddy402.github.io/sevicio_de_automatizacion/articulo-integrar-base-datos-sheets-excel.html",
+  "keywords": [
+    "integrar base de datos con Google Sheets",
+    "conexión SQL a Excel",
+    "Apps Script para APIs",
+    "Power Query transformación",
+    "programar actualización de reportes",
+    "gobernanza de datos en hojas",
+    "KPIs de automatización",
+    "ETL ligero para reportes"
+  ]
+}
+</script>
+</body>
+</html>
