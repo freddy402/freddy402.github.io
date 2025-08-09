@@ -9,6 +9,57 @@
   <meta name="description" content="Impulsa la transformación digital de tu PYME con automatización de reportes en Excel y Google Sheets, más estrategias SEO para visibilidad y eficiencia.">
 
   <style>
+    /* Contenedor del menú */
+.menu {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  align-items: center;
+}
+
+/* Enlaces principales */
+.menu a {
+  text-decoration: none;
+  color: white;
+  padding: 8px 12px;
+}
+
+/* Submenú */
+.submenu-container {
+  position: relative;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white; /* Fondo claro */
+  list-style: none;
+  padding: 5px 0;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 6px; /* Esquinas redondeadas */
+  min-width: 180px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra flotante */
+  z-index: 10;
+}
+
+.submenu li a {
+  display: block;
+  padding: 8px 12px;
+  color: black;
+}
+
+.submenu li a:hover {
+  background: #f0f0f0;
+}
+
+/* Mostrar submenú al pasar el mouse */
+.submenu-container:hover .submenu {
+  display: block;
+}
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: Arial, sans-serif; background: #f5f5f5; color: #333; }
     nav { position: fixed; top: 0; width: 100%; background: #003366; color: #fff; display: flex; justify-content: space-between; padding: 10px 20px; z-index: 100; }
