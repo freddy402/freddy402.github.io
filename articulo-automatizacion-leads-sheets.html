@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automatización de leads con Google Sheets | Ing. Freddy Lobo</title>
+  <meta name="description" content="Cómo automatizar la captura y seguimiento de leads con Google Sheets y Apps Script: pasos, validaciones y alertas." />
+  <link rel="icon" href="advertising_17844586.png" type="image/png" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="site.js"></script>
+  <link rel="canonical" href="https://freddy402.github.io/articulo-automatizacion-leads-sheets.html" />
+</head>
+<body>
+  <script>renderNav();</script>
+  <main class="page">
+    <article class="article-main">
+      <p><a href="index.html">&larr; Volver al inicio</a></p>
+      <h1>Automatización de leads con Google Sheets</h1>
+      <p>Centraliza formularios, limpia datos y activa alertas sin depender de CRM costosos. Guía paso a paso.</p>
+
+      <h2>1. Fuentes de datos</h2>
+      <ul>
+        <li>Formularios web (HTML o Google Forms).</li>
+        <li>Leads de campañas (CSV/Google Ads/Facebook Ads).</li>
+        <li>Integraciones ligeras con Zapier/Make.</li>
+      </ul>
+
+      <h2>2. Estructura de la hoja</h2>
+      <ul>
+        <li>Hoja “raw” para importaciones automáticas.</li>
+        <li>Hoja “leads” normalizada: nombre, email, teléfono, origen, fecha, etapa.</li>
+        <li>Validaciones: formatos de email/teléfono y listas de etapa.</li>
+      </ul>
+
+      <h2>3. Automatizaciones con Apps Script</h2>
+      <ul>
+        <li>Trigger por tiempo: importar CSV de campañas o API.</li>
+        <li>Normalización: mayúsculas/minúsculas, quitar espacios, estandarizar país.</li>
+        <li>Alertas: email/WhatsApp cuando entra un lead de alta prioridad.</li>
+      </ul>
+
+      <h2>4. Dashboard</h2>
+      <p>Usa filtros y tablas dinámicas para ver volumen por origen, etapa y conversiones. Para mayor claridad, conecta Data Studio/Looker Studio.</p>
+
+      <h2>5. Reglas de asignación</h2>
+      <ul>
+        <li>Asignar dueño por origen o carga de trabajo.</li>
+        <li>Fechas de seguimiento y SLA (ej. contactar en &lt; 15 minutos).</li>
+        <li>Estados claros: nuevo, en contacto, calificado, ganado, perdido.</li>
+      </ul>
+
+      <h2>6. Seguridad y respaldo</h2>
+      <ul>
+        <li>Permisos mínimos y versiones de respaldo.</li>
+        <li>Historial de cambios y registro de actualizaciones.</li>
+      </ul>
+
+      <h2>CTA</h2>
+      <p>¿Quieres que configure tu flujo de leads en Sheets con alertas y dashboard? <a href="https://wa.link/w05a11" target="_blank" rel="noopener">Escríbeme</a> o revisa el <a href="sevicio_de_automatizacion.html">servicio de automatización</a>.</p>
+    </article>
+  </main>
+  <a class="whatsapp-float" href="https://wa.link/w05a11" target="_blank" rel="noopener" aria-label="Escríbeme por WhatsApp">WA</a>
+  <script>renderFooter();</script>
+</body>
+</html>
